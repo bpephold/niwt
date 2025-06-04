@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niwt - Coming Soon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #e6dcff 0%, #d4c5ff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated background elements */
+        .bg-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .bg-decoration::before,
+        .bg-decoration::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .bg-decoration::before {
+            width: 400px;
+            height: 400px;
+            top: -200px;
+            left: -200px;
+        }
+
+        .bg-decoration::after {
+            width: 300px;
+            height: 300px;
+            bottom: -150px;
+            right: -150px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 60px 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo-container {
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo {
+            width: 200px;
+            height: auto;
+            filter: drop-shadow(0 10px 20px rgba(91, 55, 183, 0.2));
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            color: #2d2d5f;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .tagline {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .form-container {
+            margin-top: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .email-input {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            outline: none;
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+
+        .email-input:focus {
+            border-color: #5b37b7;
+            box-shadow: 0 0 0 4px rgba(91, 55, 183, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            background: linear-gradient(135deg, #5b37b7 0%, #7c5ce6 100%);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(91, 55, 183, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(91, 55, 183, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .recaptcha-container {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .success-message {
+            display: none;
+            color: #4CAF50;
+            font-weight: 600;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 10px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .error-message {
+            display: none;
+            color: #f44336;
+            font-weight: 600;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(244, 67, 54, 0.1);
+            border-radius: 10px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .privacy-note {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #999;
+            line-height: 1.5;
+        }
+
+        .privacy-note a {
+            color: #5b37b7;
+            text-decoration: none;
+        }
+
+        .privacy-note a:hover {
+            text-decoration: underline;
+        }
+
+        /* Loading state */
+        .loading {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 30px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .logo {
+                width: 150px;
+            }
+
+            .tagline {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-decoration"></div>
+    
+    <div class="container">
+        <div class="logo-container">
+            <!-- Replace this with your actual logo image -->
+            <img src="niwt-logo.png" alt="Niwt Logo" class="logo">
+        </div>
+        
+        <h1>Niwt</h1>
+        <p class="tagline">Something amazing is coming. Be the first to know when we launch.</p>
+        
+        <div class="form-container">
+            <form id="waitlistForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="form-group">
+                    <input 
+                        type="email" 
+                        name="email" 
+                        class="email-input" 
+                        placeholder="Enter your email address" 
+                        required
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                    >
+                </div>
+                
+                <!-- reCAPTCHA container -->
+                <div class="recaptcha-container">
+                    <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <span class="btn-text">Join Waiting List</span>
+                    <div class="loading"></div>
+                </button>
+            </form>
+            
+            <div class="success-message" id="successMessage">
+                🎉 You're on the list! We'll be in touch soon.
+            </div>
+            
+            <div class="error-message" id="errorMessage">
+                Something went wrong. Please try again.
+            </div>
+            
+            <p class="privacy-note">
+                We respect your privacy and will only use your email to notify you about Niwt updates.
+            </p>
+        </div>
+    </div>
+
+    <!-- Google reCAPTCHA Script -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    
+    <script>
+        const form = document.getElementById('waitlistForm');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+        const btnText = document.querySelector('.btn-text');
+        const loading = document.querySelector('.loading');
+        
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Hide any previous messages
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            // Check if reCAPTCHA is completed
+            const recaptchaResponse = grecaptcha.getResponse();
+            if (!recaptchaResponse) {
+                errorMessage.textContent = 'Please complete the reCAPTCHA verification.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+            
+            // Show loading state
+            btnText.style.display = 'none';
+            loading.style.display = 'block';
+            
+            try {
+                // Submit to Formspree (or your preferred service)
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Success
+                    form.reset();
+                    grecaptcha.reset();
+                    successMessage.style.display = 'block';
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                // Error
+                errorMessage.style.display = 'block';
+            } finally {
+                // Reset button state
+                btnText.style.display = 'inline';
+                loading.style.display = 'none';
+            }
+        });
+        
+        // Optional: Add email validation feedback
+        const emailInput = document.querySelector('input[type="email"]');
+        emailInput.addEventListener('blur', function() {
+            if (this.value && !this.validity.valid) {
+                this.style.borderColor = '#f44336';
+            } else {
+                this.style.borderColor = '#e0e0e0';
+            }
+        });
+    </script>
+</body>
+</html>
