@@ -257,14 +257,14 @@
     <div class="container">
         <div class="logo-container">
             <!-- Replace this with your actual logo image -->
-            <img src="images/Niwt_Purple_Final.jpg" alt="Niwt Logo" class="logo">
+            <img src="niwt-logo.png" alt="Niwt Logo" class="logo">
         </div>
         
         <h1>Niwt</h1>
         <p class="tagline">Something amazing is coming. Be the first to know when we launch.</p>
         
         <div class="form-container">
-            <form id="waitlistForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <form id="waitlistForm" action="https://formspree.io/f/mjkrkvgn" method="POST">
                 <div class="form-group">
                     <input 
                         type="email" 
@@ -274,11 +274,6 @@
                         required
                         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                     >
-                </div>
-                
-                <!-- reCAPTCHA container -->
-                <div class="recaptcha-container">
-                    <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
                 </div>
                 
                 <button type="submit" class="submit-btn">
@@ -301,9 +296,6 @@
         </div>
     </div>
 
-    <!-- Google reCAPTCHA Script -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    
     <script>
         const form = document.getElementById('waitlistForm');
         const successMessage = document.getElementById('successMessage');
@@ -318,20 +310,12 @@
             successMessage.style.display = 'none';
             errorMessage.style.display = 'none';
             
-            // Check if reCAPTCHA is completed
-            const recaptchaResponse = grecaptcha.getResponse();
-            if (!recaptchaResponse) {
-                errorMessage.textContent = 'Please complete the reCAPTCHA verification.';
-                errorMessage.style.display = 'block';
-                return;
-            }
-            
             // Show loading state
             btnText.style.display = 'none';
             loading.style.display = 'block';
             
             try {
-                // Submit to Formspree (or your preferred service)
+                // Submit to Formspree
                 const response = await fetch(form.action, {
                     method: 'POST',
                     body: new FormData(form),
@@ -343,7 +327,6 @@
                 if (response.ok) {
                     // Success
                     form.reset();
-                    grecaptcha.reset();
                     successMessage.style.display = 'block';
                 } else {
                     throw new Error('Form submission failed');
