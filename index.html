@@ -260,6 +260,7 @@
             <img src="images/Niwt%20Official%20Logo%20(Final).jpeg" alt="Niwt Logo" class="logo">
         </div>
         
+        <h1>Niwt</h1>
         <p class="tagline">Something amazing is coming. Be the first to know when we launch.</p>
         
         <div class="form-container">
@@ -273,6 +274,8 @@
                         required
                         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                     >
+                    <!-- Hidden message field for Formspree compatibility -->
+                    <input type="hidden" name="message" value="New waitlist signup">
                 </div>
                 
                 <button type="submit" class="submit-btn">
