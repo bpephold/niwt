@@ -264,25 +264,21 @@
         <p class="tagline">Something amazing is coming. Be the first to know when we launch.</p>
         
         <div class="form-container">
-            <form id="waitlistForm" action="https://formspree.io/f/mjkrkvgn" method="POST">
-                <div class="form-group">
-                    <input 
-                        type="email" 
-                        name="email" 
-                        class="email-input" 
-                        placeholder="Enter your email address" 
-                        required
-                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                    >
-                    <!-- Hidden message field for Formspree compatibility -->
-                    <input type="hidden" name="message" value="New waitlist signup">
-                </div>
-                
-                <button type="submit" class="submit-btn">
-                    <span class="btn-text">Join Waiting List</span>
-                    <div class="loading"></div>
-                </button>
-            </form>
+            <form
+              action="https://formspree.io/f/manjqpkj"
+              method="POST"
+            >
+        <label>
+    Your email:
+    <input type="email" name="email">
+        </label>
+        <label>
+    Your message:
+    <textarea name="message"></textarea>
+  </label>
+  <!-- your other form fields go here -->
+  <button type="submit">Send</button>
+</form>
             
             <div class="success-message" id="successMessage">
                 🎉 You're on the list! We'll be in touch soon.
