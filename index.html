@@ -257,21 +257,33 @@
     <div class="container">
         <div class="logo-container">
             <!-- Replace this with your actual logo image -->
-            <img src="images/Niwt%20Official%20Logo%20(Final).jpeg" alt="Niwt Logo" class="logo">
+            <img src="niwt-logo.png" alt="Niwt Logo" class="logo">
         </div>
         
+        <h1>Niwt</h1>
         <p class="tagline">Something amazing is coming. Be the first to know when we launch.</p>
         
         <div class="form-container">
-            <form
-              action="https://formspree.io/f/manjqpkj"
-              method="POST"
-            >
-        <label>
-    Your email:
-    <input type="email" name="email">
-        </label>
-</form>
+            <form id="waitlistForm" action="https://formspree.io/f/mjkrkvgn" method="POST">
+                <input type="hidden" name="_subject" value="New Niwt Waitlist Signup!">
+                <div class="form-group">
+                    <input 
+                        type="email" 
+                        name="email" 
+                        class="email-input" 
+                        placeholder="Enter your email address" 
+                        required
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                    >
+                    <!-- Hidden message field for Formspree compatibility -->
+                    <input type="hidden" name="message" value="New waitlist signup">
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <span class="btn-text">Join Waiting List</span>
+                    <div class="loading"></div>
+                </button>
+            </form>
             
             <div class="success-message" id="successMessage">
                 🎉 You're on the list! We'll be in touch soon.
