@@ -5,109 +5,170 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Niwt | Intelligent Workflows, Reimagined</title>
   <style>
+    :root {
+      --primary: #5e4b8b;
+      --primary-dark: #483471;
+      --bg: #f9f9fb;
+      --text: #333;
+      --subtext: #666;
+    }
+
     body {
       margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background: #f9f9fb;
+      font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    header .logo {
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+
+    header nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .hero {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
-      padding: 40px 20px;
       text-align: center;
+      padding: 60px 20px;
     }
 
-    img.logo {
-      max-width: 220px;
-      margin-bottom: 20px;
+    .hero img {
+      max-width: 300px;
+      margin-top: 30px;
     }
 
-    h1 {
-      font-size: 2.2rem;
-      color: #333;
-      margin-bottom: 10px;
-    }
-
-    p.description {
-      color: #555;
-      font-size: 1.1rem;
+    .hero h1 {
+      font-size: 2.5rem;
       max-width: 600px;
-      margin: 0 auto 30px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--subtext);
+      max-width: 540px;
+      margin-bottom: 30px;
+    }
+
+    .form-box {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      max-width: 400px;
+      width: 90%;
     }
 
     form {
-      background: #fff;
-      padding: 25px 30px;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-      max-width: 400px;
-      width: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
     label {
-      display: block;
-      margin: 15px 0 6px;
-      font-weight: bold;
-      color: #333;
       text-align: left;
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 0.95rem;
     }
 
-    input, textarea {
-      width: 100%;
+    input {
       padding: 10px;
-      margin-bottom: 12px;
+      margin-top: 5px;
       border: 1px solid #ccc;
       border-radius: 6px;
       font-size: 1rem;
     }
 
     button {
-      background-color: #5e4b8b;
+      background: var(--primary);
       color: white;
-      padding: 10px 20px;
-      font-size: 1rem;
       border: none;
       border-radius: 6px;
+      padding: 12px;
+      margin-top: 20px;
+      font-size: 1rem;
       cursor: pointer;
       transition: background 0.3s ease;
     }
 
     button:hover {
-      background-color: #483471;
+      background: var(--primary-dark);
     }
 
-    .subtext {
-      margin-top: 20px;
-      font-size: 0.9rem;
-      color: #888;
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--subtext);
+      margin-top: 60px;
+      padding-bottom: 30px;
+    }
+
+    @media (min-width: 768px) {
+      .hero {
+        flex-direction: row;
+        justify-content: center;
+        text-align: left;
+      }
+
+      .hero-content {
+        max-width: 500px;
+        margin-right: 40px;
+      }
+
+      .hero img {
+        margin-top: 0;
+      }
     }
   </style>
 </head>
 <body>
 
-  <img class="logo" src="./images/Niwt%20Official%20Logo%20(Final).jpeg" alt="Niwt Logo" />
+  <header>
+    <div class="logo">Niwt</div>
+    <nav>
+      <a href="#">Features</a>
+      <a href="#">Pricing</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
 
-  <h1>Welcome to Niwt</h1>
-  <p class="description">
-    We're rethinking how knowledge is captured, shared, and acted upon inside growing organizations.
-    If you've ever wished your systems knew what your best people know—you're going to love what comes next.
-  </p>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Reimagining How Organizations Capture and Scale What Matters</h1>
+      <p>Niwt is quietly building something new for founders, teams, and technologists who want clarity, speed, and resilience in how they work.</p>
+      <div class="form-box">
+        <form action="https://formspree.io/f/manjqpkj" method="POST">
+          <input type="hidden" name="_redirect" value="https://www.niwt.com/thankyou.html" />
+          <label for="name">Your name:</label>
+          <input type="text" name="name" required />
+          <label for="email">Your email:</label>
+          <input type="email" name="email" required />
+          <button type="submit">Join the Waitlist</button>
+        </form>
+      </div>
+    </div>
+    <img src="./images/Niwt%20Official%20Logo%20(Final).jpeg" alt="Niwt Illustration" />
+  </section>
 
-  <form action="https://formspree.io/f/manjqpkj" method="POST">
-    <input type="hidden" name="_redirect" value="https://www.niwt.com/thankyou.html" />
-
-    <label for="name">Your name:</label>
-    <input type="text" name="name" required />
-
-    <label for="email">Your email:</label>
-    <input type="email" name="email" required />
-
-    <button type="submit">Join the Waitlist</button>
-  </form>
-
-  <p class="subtext">We won’t spam or share your information. You’ll be first to know when we launch.</p>
+  <footer>
+    © 2025 Niwt. All rights reserved. | <a href="#">Privacy</a>
+  </footer>
 
 </body>
 </html>
