@@ -135,6 +135,44 @@
         margin-top: 0;
       }
     }
+    nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-item {
+  position: relative;
+  margin-left: 20px;
+  font-weight: 500;
+  cursor: default;
+}
+
+.nav-item:hover .dropdown {
+  display: block;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 24px;
+  left: 0;
+  background: white;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  color: #555;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.nav-link {
+  margin-left: 20px;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+}
   </style>
 </head>
 <body>
@@ -142,10 +180,16 @@
   <header>
     <div class="logo">NIWT</div>
     <nav>
-      <a href="#">Features</a>
-      <a href="#">Pricing</a>
-      <a href="#">Contact</a>
-    </nav>
+  <div class="nav-item">
+    Features
+    <div class="dropdown">Coming Soon</div>
+  </div>
+  <div class="nav-item">
+    Pricing
+    <div class="dropdown">Coming Soon</div>
+  </div>
+  <a href="mailto:Niwt-waitinglist@niwt.com" class="nav-link">Contact</a>
+</nav>
   </header>
 
   <section class="hero">
